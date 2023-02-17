@@ -1,10 +1,20 @@
 :root {
   --orange: #fc8019;
+  --red: #e43b4f;
+  --font-red: #fa4a5b;
+  --green: #0f8a65;
+  --font-green: #60b246;
 }
-
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @font-face {
   font-family: ProximaNova;
   src: url("/assets/Proxima\ Nova\ Font.otf") format("opentype");
+  font-display: swap;
 }
 @font-face {
   font-family: "uxwing-iconsfont";
@@ -19,8 +29,13 @@
       format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
-
+html{
+  font-family: Lato;
+  scroll-behavior: smooth;
+  scroll-padding-top: 180px;
+}
 html,
 body {
   font-size: 16px;
@@ -39,7 +54,7 @@ body {
 }
 
 .main-nav {
-  width: 80%;
+  width: 85%;
   max-width: 100vw;
   flex-wrap: wrap;
   align-self: center;
@@ -49,27 +64,43 @@ body {
 }
 
 .main-nav > ul {
+  margin-block: 7px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.main-nav > ul > li:hover {
+  color: var(--orange);
+}
+.main-nav > ul > li:hover .orange {
+  fill: var(--orange);
+}
+.main-nav > ul > li {
+  padding-inline: 10px;
+}
+.nav-items > li {
+  padding-inline: 30px !important;
 }
 
 li {
-  padding: 5px 17px;
   list-style-type: none;
 }
 
 .faded {
-  color: #aaa;
+  color: inherit;
+  opacity: 0.7;
+  font-size: 15px;
 }
 
 .arrow {
   border: solid var(--orange);
-  border-width: 0 3px 3px 0;
+  border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 3px;
-  transform: rotate(225deg);
+  transform: rotate(45deg) translateY(-2px);
+  margin-left: 5px;
 }
 
 .cart {
@@ -88,21 +119,19 @@ li {
   flex-wrap: wrap;
   gap: 10px;
   padding-top: 10px;
-  background-color: #f8f8f9;
+  color: #93959f;
+  background-color: #fbfbfb;
   width: 100%;
   height: 30px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   align-items: center;
-  color: #888;
-  
 }
 .address span {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #888;
 }
 h1,
 h2,
-h3,
 h4,
 h5,
 h6,
@@ -111,15 +140,26 @@ p {
 }
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 20px;
   width: 100%;
   background-color: #262223;
   color: #fff;
-  padding-block: 50px;
+  padding-block: 40px 20px;
+  z-index: 100;
+  transition: all 0.3s;
+  position: sticky;
+  top: -40px;
+}
+.is-pinned {
+  padding-block: 50px 10px !important;
 }
 
+.hide {
+  height: 0px;
+  margin: 0;
+  overflow: hidden;
+}
 .hover-orange:hover {
   cursor: pointer;
   color: var(--orange);
@@ -132,9 +172,17 @@ p {
 }
 
 .restaurant {
+  position: relative;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
-  padding: 0 55px;
+  margin-left: 80px;
+  width: 538px;
+}
+.restaurant h2 {
+  max-width: 538px;
+  font-weight: 300;
+  font-size: 32px;
 }
 
 .card {
@@ -152,8 +200,10 @@ p {
 }
 .rating {
   font-size: 12px;
+  overflow: hidden;
 }
 .offers {
+  height: min-content;
   position: relative;
   border: 0.5px solid #eee;
   padding: 25px;
@@ -185,27 +235,150 @@ p {
   line-height: 1.2;
   font-weight: 500;
 }
+.flex-row-reverse {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+input {
+  border: none;
+}
 
-@media screen and (max-width:969px){
-  .address{
+input:focus {
+  outline: none;
+}
+.filters {
+  top: 40px;
+  position: relative;
+  min-width: 100%;
+  justify-content: space-between;
+}
+
+.filters > div {
+  color: #000;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-left: 10px;
+  align-items: center;
+  box-shadow: 0 3px 15px 0 rgba(40, 44, 63, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  height: 40px;
+  background-color: #fff;
+}
+
+.filters > div:nth-child(1) {
+  width: 254px;
+}
+.filters > div:nth-child(2),
+.filters > div:nth-child(3) {
+  width: 120px;
+  cursor: pointer;
+  vertical-align: middle;
+  font-weight: bolder;
+  font-family: ProximaNova;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out;
+}
+.filters>div>input::placeholder{
+  font-weight: 600;
+  font-size: 14px;
+}
+.filters > div:nth-child(2):hover {
+  color: var(--font-green);
+}
+.filters > div:nth-child(3):hover {
+  color: var(--font-red);
+}
+
+.fi-search:before,
+.fi-check-mark-square {
+  color: #000;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+}
+.fi-check-marked {
+  transition: all 0.3s;
+  fill: var(--font-green);
+}
+._17CQa {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 40px;
+  vertical-align: top;
+  padding-top: 11px;
+  text-align: right;
+  width: 41px;
+}
+.checkbox-span > label {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+.checkbox-span {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+.checkbox {
+  display: none;
+}
+.checkbox:checked ~ .checkbox-green {
+  border-color: #60b246;
+  transform: scale(1);
+}
+.border-holder {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-color: #3d4152;
+  border: 1.5px solid #7e808c;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+.checkbox-green {
+  height: 16px;
+  width: 16px;
+  transition: transform 0.3s cubic-bezier(0.27, 0.84, 0.29, 0.84) 0ms;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  fill: #60b246;
+  transform: scale(0);
+}
+[type="checkbox"] {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
+}
+@media screen and (max-width: 969px) {
+  .address {
     height: auto;
     padding-left: 20px;
-    gap:5px;
+    gap: 5px;
   }
-  .container{
-    gap:10px;
+  .container {
+    gap: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .restaurant{
+  .restaurant {
     max-width: 100%;
-    gap:10px;
-    padding-inline:10px;
+    gap: 10px;
+    padding-inline: 10px;
     margin: 20px 0 20px 20px;
-
   }
-  .card div{
+  .card div {
     padding-inline: 10px;
   }
-} 
+  .container{
+    position: static;
+  }
+}
