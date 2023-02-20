@@ -143,7 +143,7 @@
         <div class="flex-row-reverse filters">
           <div>
             <i class="fi fi-search" class="black"></i>
-            <input type="text" placeholder="Search for dishes..." />
+            <input id="search" type="text" value="" placeholder="Search for dishes..."/>
           </div>
           <div>
             <span>
@@ -242,6 +242,9 @@
       </div>
     </section>
     <footer w3-include-html="./footer.html"></footer>
+    <div id="temp">
+
+    </div>
     <script>
       function includeHTML() {
         var z, i, elmnt, file, xhttp;
@@ -279,5 +282,6 @@
     <script defer type="module" src="/js/food.js"></script>
     <script defer type="module" src="/js/menu.js"></script>
     <script defer src="/js/index.js"></script>
+    <script defer type="module" src="/js/search.js"></script>
   </body>
 </html>

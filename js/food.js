@@ -92,7 +92,7 @@ const navObserver = new IntersectionObserver(
   rootMargin:"-180px 0px 0px 0px" }
 );
 
-function addMenu(
+export function addMenu(
   foodId,
   foodName,
   isveg,
@@ -141,7 +141,7 @@ function addElementsToNav(element) {
 renderMenu(false);
 document.querySelector(".food-nav div a div").classList.add("selected-fill");
 
-function addColor(currentId) {
+export function addColor(currentId) {
   let count = 0;
   const navitems = document.querySelector(".food-nav>div");
   for (const child of navitems.children) {
