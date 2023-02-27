@@ -62,7 +62,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.logo{
+  transition: all .3s;
+}
+.logo:hover{
+  transform: scale(1.1,1.1);
+}
 .main-nav > ul {
   margin-block: 7px;
   display: flex;
@@ -141,6 +146,7 @@ p {
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   width: 100%;
   background-color: #262223;

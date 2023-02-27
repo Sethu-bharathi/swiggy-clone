@@ -17,8 +17,8 @@ window.searchFood = function () {
         ""
       )}"><div class="food-type">${element.name}</div></a>
   `);
-      total.push(`<div id="${element.name.replace(/[^A-Z0-9]/gi, "")}">
-  <h3 class="catagory">${element.name}</h3>`);
+  //     total.push(`<div id="${element.name.replace(/[^A-Z0-9]/gi, "")}">
+  // <h3 class="catagory">${element.name}</h3>`);
       foodNav.push(`<div>`);
       element.widgets.forEach((e) => {
         // total.push(addElementsToNav(e));
@@ -65,7 +65,7 @@ window.searchFood = function () {
 
     total.push(`</div>`);
   });
-  // foodMenu.insertAdjacentHTML("afterBegin", total.join(""));
+  foodMenu.innerHTML=total.join("")+foodMenu.innerHTML;
   const temp=document
     .getElementById("temp")
     temp.innerHTML+="";

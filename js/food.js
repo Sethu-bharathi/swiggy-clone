@@ -3,17 +3,20 @@
 import { menu } from "./menu.js";
 window.menu = menu;
 const foodMenu = document.querySelector(".food-menu");
-const total = [];
-const foodNav = [];
-const cart = { items: [] };
-const toWatch = [];
+const foodNavDom = document.querySelector(".food-nav div");
 
-function renderMenu(isveg) {
+const cart = { items: [] };
+
+function renderMenu(isNonVeg = 1,observer) {
+  const foodNav = [];
+  const toWatch = [];
+  const total = [];
   foodMenu.innerHTML = "";
   menu.allCollections.forEach((element) => {
     const node = [];
     toWatch.push(element.name);
     if (element.name === "Recommended" || element.name === "Accompaniments") {
+      let count=0;
       foodNav.push(`<a href="#${element.name.replace(
         /[^A-Z0-9]/gi,
         ""
@@ -22,19 +25,24 @@ function renderMenu(isveg) {
       total.push(addElementsToNav(element));
       element.entities.forEach((e) => {
         const food = menu.items[e.id.toString()];
-        node.push(
-          addMenu(
-            food.id,
-            food.name,
-            food.isVeg,
-            food.price / 100,
-            food.description,
-            food.cloudinaryImageId
-          )
-        );
+        if (isNonVeg || food.isVeg) {
+          node.push(
+            addMenu(
+              food.id,
+              food.name,
+              food.isVeg,
+              food.price / 100,
+              food.description,
+              food.cloudinaryImageId
+            )
+          );
+          count++;
+          
+        }
       });
       total.push(node.join(`<div class="line"></div>`));
     } else {
+      let count = 0;
       foodNav.push(`<a href="#${element.name.replace(
         /[^A-Z0-9]/gi,
         ""
@@ -53,16 +61,19 @@ function renderMenu(isveg) {
         total.push(addElementsToNav(e));
         e.entities.forEach((e) => {
           const food = menu.items[e.id.toString()];
-          node.push(
-            addMenu(
-              food.id,
-              food.name,
-              food.isVeg,
-              food.price / 100,
-              food.description,
-              food.cloudinaryImageId
-            )
-          );
+          if (isNonVeg || food.isVeg) {
+            node.push(
+              addMenu(
+                food.id,
+                food.name,
+                food.isVeg,
+                food.price / 100,
+                food.description,
+                food.cloudinaryImageId
+              )
+            );
+            count++;
+          }
         });
         total.push(node.join(`<div class="line"></div>`));
         total.push("</div>");
@@ -74,22 +85,25 @@ function renderMenu(isveg) {
     total.push(`</div>`);
   });
   foodMenu.insertAdjacentHTML("beforeend", total.join(""));
-  document.querySelector(".food-nav div").innerHTML += foodNav.join("\n");
-  document.addEventListener("DOMContentLoaded", function () {
+  foodNavDom.innerHTML = "";
+  foodNavDom.innerHTML = foodNav.join("\n");
+  console.log(observer);
+  setTimeout(function () {
     toWatch.forEach((sections) => {
       navObserver.observe(
         document.querySelector(`#${sections.replace(/[^A-Z0-9]/gi, "")}`)
       );
+      document.querySelector(".food-nav div a div").classList.add("selected-fill");
+      observer.observe(document.querySelectorAll(".catagory")[0]);
     });
-  });
+  },500);
 }
 const navObserver = new IntersectionObserver(
   function (entries) {
     if (entries[0].isIntersecting === true)
       addColor(entries[0].target.getAttribute("id"));
   },
-  { threshold: [0.05],
-  rootMargin:"-180px 0px 0px 0px" }
+  { threshold: [0.05], rootMargin: "-180px 0px 0px 0px" }
 );
 
 export function addMenu(
@@ -138,25 +152,36 @@ function addElementsToNav(element) {
   } items</h5>
   <div class="u-underline"></div>`;
 }
-renderMenu(false);
-document.querySelector(".food-nav div a div").classList.add("selected-fill");
+
 
 export function addColor(currentId) {
   let count = 0;
+  let rendered = false;
+  let hided = false;
   const navitems = document.querySelector(".food-nav>div");
   for (const child of navitems.children) {
+    if (rendered && child.tagName == "DIV") {
+      for (const showchild of navitems.children) {
+        showchild.classList.add("show");
+      }
+      rendered = false;
+    }
+
+    if (hided && child.tagName == "DIV") {
+      for (const showchild of navitems.children) {
+        showchild.classList.remove("show");
+      }
+      hided = false;
+    }
     if (child.getAttribute("href") == `#${currentId}`) {
+      rendered = true;
       child.firstChild.classList.add("selected-fill");
       const indicator = document.querySelector(".orange-indicator > div");
-      indicator.style.transform = `translateY(${42 + count * 21+count*7}px)`;
-      console.log(count);
-      if (child.lastChild) {
-        const lastChild = child.lastChild;
-        for (const lastchild of lastChild.children) {
-          lastChild.classList.add(show);
-        }
-      }
+      indicator.style.transform = `translateY(${
+        42 + count * 21 + count * 7
+      }px)`;
     } else if (child.getAttribute("href")) {
+      hided = true;
       try {
         child.firstChild.classList.remove("selected-fill");
       } catch (e) {
@@ -168,3 +193,4 @@ export function addColor(currentId) {
     count += 1;
   }
 }
+window.renderMenu = renderMenu;

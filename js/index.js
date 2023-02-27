@@ -83,18 +83,20 @@ const observer = new IntersectionObserver(
     threshold: [1],
   }
 );
-
 // const observer = new IntersectionObserver(obsCallback, obsOptions);
 setTimeout(() => {
   observer.observe(document.querySelectorAll(".catagory")[0]);
 }, 1000);
-
-
-
+//Display all items
+window.renderMenu(1,observer); //renderMenu(argument isNonveg-whether to include Nonveg);
 
 // Filtering Veg only
-function toggleveg() {}
-function FilterVeg(items) {}
+function toggleveg(event) {
+  observer.unobserve(document.querySelectorAll(".catagory")[0])
+  window.renderMenu(!document.querySelector(".checkbox").checked,observer);
+  console.log(document.querySelector(".checkbox").checked,"isVeg");
+}
+
 
 function addCart(event){
   console.log(event.getAttribute("foodid"));

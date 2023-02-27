@@ -7,6 +7,9 @@
   height: 0;
   overflow: hidden;
 }
+.show a>div{
+  height: auto;
+}
 .drop-down-items:hover{
   color:var(--orange);
 }
