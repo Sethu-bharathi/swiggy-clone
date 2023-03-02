@@ -1,13 +1,13 @@
 "use strict";
 
-import { menu } from "./menu.js";
+import { menu } from "../menu.js";
 window.menu = menu;
 const foodMenu = document.querySelector(".food-menu");
 const foodNavDom = document.querySelector(".food-nav div");
 
 const cart = { items: [] };
 
-function renderMenu(isNonVeg = 1,observer) {
+export const renderMenu = function (isNonVeg = 1, observer) {
   const foodNav = [];
   const toWatch = [];
   const total = [];
@@ -16,7 +16,7 @@ function renderMenu(isNonVeg = 1,observer) {
     const node = [];
     toWatch.push(element.name);
     if (element.name === "Recommended" || element.name === "Accompaniments") {
-      let count=0;
+      let count = 0;
       foodNav.push(`<a href="#${element.name.replace(
         /[^A-Z0-9]/gi,
         ""
@@ -37,7 +37,6 @@ function renderMenu(isNonVeg = 1,observer) {
             )
           );
           count++;
-          
         }
       });
       total.push(node.join(`<div class="line"></div>`));
@@ -87,17 +86,18 @@ function renderMenu(isNonVeg = 1,observer) {
   foodMenu.insertAdjacentHTML("beforeend", total.join(""));
   foodNavDom.innerHTML = "";
   foodNavDom.innerHTML = foodNav.join("\n");
-  console.log(observer);
   setTimeout(function () {
     toWatch.forEach((sections) => {
       navObserver.observe(
         document.querySelector(`#${sections.replace(/[^A-Z0-9]/gi, "")}`)
       );
-      document.querySelector(".food-nav div a div").classList.add("selected-fill");
+      document
+        .querySelector(".food-nav div a div")
+        .classList.add("selected-fill");
       observer.observe(document.querySelectorAll(".catagory")[0]);
     });
-  },500);
-}
+  }, 500);
+};
 const navObserver = new IntersectionObserver(
   function (entries) {
     if (entries[0].isIntersecting === true)
@@ -106,7 +106,7 @@ const navObserver = new IntersectionObserver(
   { threshold: [0.05], rootMargin: "-180px 0px 0px 0px" }
 );
 
-export function addMenu(
+export const addMenu = function (
   foodId,
   foodName,
   isveg,
@@ -142,7 +142,7 @@ export function addMenu(
     </button>
   </div>`;
   // foodMenu.insertAdjacentHTML("beforeend", newFood);
-}
+};
 
 function addElementsToNav(element) {
   return `<div id="${element.name.replace(/[^A-Z0-9]/gi, "")}">
@@ -152,7 +152,6 @@ function addElementsToNav(element) {
   } items</h5>
   <div class="u-underline"></div>`;
 }
-
 
 export function addColor(currentId) {
   let count = 0;
