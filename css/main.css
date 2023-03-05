@@ -62,12 +62,31 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.align-center{
+  flex-wrap: wrap;
+  align-items: center;
+  gap:10px;
+}
+
+.cart{
+  height: 100%;
+  flex-grow: 1;
+}
 .logo{
   transition: all .3s;
 }
 .logo:hover{
   transform: scale(1.1,1.1);
 }
+
+
+.align-center h3{
+  max-width: 130px;
+  font-size: .9rem;
+  margin-block: 20px 30px !important;
+  margin: 0;
+}
+
 .main-nav > ul {
   margin-block: 7px;
   display: flex;
@@ -308,16 +327,7 @@ input:focus {
   transition: all 0.3s;
   fill: var(--font-green);
 }
-._17CQa {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  width: 40px;
-  vertical-align: top;
-  padding-top: 11px;
-  text-align: right;
-  width: 41px;
-}
+
 .checkbox-span > label {
   cursor: pointer;
   display: inline-block;

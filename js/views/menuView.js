@@ -5,7 +5,7 @@ window.menu = menu;
 const foodMenu = document.querySelector(".food-menu");
 const foodNavDom = document.querySelector(".food-nav div");
 
-const cart = { items: [] };
+
 
 export const renderMenu = function (isNonVeg = 1, observer) {
   const foodNav = [];
@@ -138,7 +138,7 @@ export const addMenu = function (
       />`
           : `<div class="food-img"> </div> `
       }
-      <div class="add" foodid=${foodId} onClick="addCart(this)">ADD</div>
+      <div class="add" foodid=${foodId} onclick="addCart(this)">ADD</div>
     </button>
   </div>`;
   // foodMenu.insertAdjacentHTML("beforeend", newFood);

@@ -30,7 +30,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <svg viewBox="0 0 559 825" height="49" width="34" fill="#fc8019" class="logo">
+            <svg
+              viewBox="0 0 559 825"
+              height="49"
+              width="34"
+              fill="#fc8019"
+              class="logo"
+            >
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -143,7 +149,12 @@
         <div class="flex-row-reverse filters">
           <div>
             <i class="fi fi-search" class="black"></i>
-            <input id="search" type="text" value="" placeholder="Search for dishes..."/>
+            <input
+              id="search"
+              type="text"
+              value=""
+              placeholder="Search for dishes..."
+            />
           </div>
           <div>
             <span>
@@ -195,9 +206,7 @@
       <div class="food-container">
         <div class="flex-row sticky margin-left-50">
           <div class="food-nav">
-            <div>
-              
-            </div>
+            <div></div>
           </div>
           <div class="orange-indicator">
             <div></div>
@@ -218,8 +227,7 @@
                   Spicy chicken tikka prepped patiala-style.
                 </p>
               </div>
-              <button class="relative pointer" width="118"
-              height="96">
+              <button class="relative pointer" width="118" height="96">
                 <img
                   class="food-img"
                   loading="lazy"
@@ -234,17 +242,18 @@
           </div>
           <div class="line"></div>
         </div>
-        <div class="flex-row sticky">
-          <div class="food-nav">
-            <div>Cart empty</div>
+        <div class="flex-row sticky cart">
+          <div>
+            <br>
+            <div class="catagory">Cart</div>
+            <div class="cart-items">
+            </div>
           </div>
         </div>
       </div>
     </section>
     <footer w3-include-html="./footer.html"></footer>
-    <div id="temp">
-
-    </div>
+    <div id="temp"></div>
     <script>
       function includeHTML() {
         var z, i, elmnt, file, xhttp;

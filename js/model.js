@@ -39,3 +39,8 @@ export const getSearchItems = function (text) {
   });
   return searchedItems;
 };
+
+
+export const getItem=function(id){
+  return menu.items[id];
+}

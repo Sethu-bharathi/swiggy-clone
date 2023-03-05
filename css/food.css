@@ -7,11 +7,11 @@
   height: 0;
   overflow: hidden;
 }
-.show a>div{
+.show a > div {
   height: auto;
 }
-.drop-down-items:hover{
-  color:var(--orange);
+.drop-down-items:hover {
+  color: var(--orange);
 }
 
 .food-menu {
@@ -19,7 +19,7 @@
   flex-direction: column;
   overflow: scroll;
   border-left: 1px solid #aaa;
-  padding: 30px 55px 100px 55px;
+  padding: 30px 85px 100px 55px;
 }
 .menu-card {
   display: flex;
@@ -30,7 +30,7 @@
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-.menu-card >div{
+.menu-card > div {
   max-width: 60%;
 }
 .line {
@@ -89,13 +89,13 @@
   width: 4px;
   height: 18px;
   background: #fc8019;
-  transition: all .4s;
+  transition: all 0.4s;
   transform: translateY(42px);
 }
 .selected-fill {
   color: var(--orange);
 }
-.selected-fill ~ div >a >div{
+.selected-fill ~ div > a > div {
   height: auto !important;
   background: black;
 }
@@ -186,6 +186,12 @@
   font-size: 1.3rem;
   font-weight: 600;
 }
+.u-underline{
+  height: 3px;
+  width: 80px;
+  border-radius: 5px;
+  background-color: #111;
+}
 .total {
   padding-block: 15px;
   font-size: 13px;
@@ -193,8 +199,80 @@
   font-weight: 500;
   text-transform: uppercase;
 }
-.catagory,.total{
+.catagory,
+.total {
   margin: 0 !important;
+}
+.amount{
+  font-size: 13px;
+  color: #535665;
+
+  min-width: 40px;
+}
+.extra-charges{
+  margin: 0;
+  font-size: 13px;
+    font-weight: 300;
+    color: #7e808c;
+    margin-top: 2px;
+}
+.add-cart,.add-cart1 {
+  cursor: pointer;
+  height: 30px;
+  width: 75px;
+  margin: 0;
+  display: flex;
+  border: 1px solid #aaa;
+  padding: 0;
+  align-items: center;
+}
+.add-cart1{
+  width: 100%;
+  height: 35px;
+  border: none;
+}
+.cart >div>div>h3{
+  line-height: 18px;
+}
+.cart-items>div>h3{
+  min-width: 100px;
+}
+.add-cart li ,.add-cart1 li{
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+  list-style: none;
+}
+.fa-green{
+  color: var(--font-green);
+}
+.add-cart li:nth-child(2),.add-cart1 li:nth-child(2){
+  font-size: .85rem;
+}
+.add-cart li:nth-child(odd),.add-cart1 li:nth-child(odd){
+  font-weight: 900;
+}
+.total-cost{
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+}
+.total-cost p{
+  text-align: end;
+  min-width: 70px;
+}
+.total-cost h3{
+  margin-bottom: 3px;
+  flex-grow: 1;
+}
+.checkout-btn{
+  margin-top: 30px;
+  color: #fff;
+  width: 100%;
+  padding-block:20px;
+  font-weight: bold;
+  background-color: var(--font-green);
+  cursor:pointer;
 }
 .s-underline {
   display: inline-block;
